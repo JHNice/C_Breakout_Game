@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.c",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\main.c",
+              "RelativeDocumentMoniker": "main.c",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\main.c*",
+              "RelativeToolTip": "main.c*",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAIwG8AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2026-04-24T09:12:51.966Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
