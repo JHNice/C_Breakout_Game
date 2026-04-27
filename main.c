@@ -1,93 +1,12 @@
 #include <stdio.h>
-#include <conio.h>
-#include <windows.h>
+#include "buffer.h"
+#include "gameObject.h"
+#include "render.h"
+#include "collision.h"
 
 #define LEFT 75
 #define RIGHT 77
-
-int index = 0;
-HANDLE screen[2];
-int size = sizeof(screen) / sizeof(screen[0]);
-
-void initialize()
-{
-	CONSOLE_CURSOR_INFO cursor;
-
-	// È­¸é ¹öÆÛ¸¦ 2°³ »ý¼ºÇÕ´Ï´Ù
-
-	cursor.dwSize = 1; // Ä¿¼­ µÎ²² Á¶Àý 1~100
-	cursor.bVisible = FALSE;
-
-	for (int i = 0; i < size; i++)
-	{
-		screen[i] = CreateConsoleScreenBuffer
-		(
-			GENERIC_READ | GENERIC_WRITE,
-			0, NULL, CONSOLE_TEXTMODE_BUFFER, NULL
-		);
-
-		SetConsoleCursorInfo(screen[i], &cursor);
-	}
-}
-
-void flip()
-{
-	SetConsoleActiveScreenBuffer(screen[index]);
-	index = !index;
-}
-
-void clear()
-{
-	COORD position = { 0,0 };
-
-	DWORD dword;
-
-	CONSOLE_SCREEN_BUFFER_INFO buffer;
-
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-
-	GetConsoleScreenBufferInfo(console, &buffer);
-
-	int width = (buffer.srWindow.Right + 1) - buffer.srWindow.Left;
-	int height = (buffer.srWindow.Bottom + 1) - buffer.srWindow.Top;
-
-	FillConsoleOutputCharacter(screen[index], ' ', width * height, position, &dword);
-}
-
-void release()
-{
-	for (int i = 0; i < size; i++)
-	{
-		CloseHandle(screen[i]);
-	}
-}
-
-void render(int x, int y, const char* character)
-{
-	DWORD dword;
-	COORD position = { x, y };
-
-	SetConsoleCursorPosition(screen[index], position);
-	WriteFile(screen[index], character, strlen(character), &dword, NULL);
-}
-
-
-struct Player
-{
-	float positionX;
-	float positionY;
-	float speed;
-	int size;
-
-};
-
-void renderPlayer(int x, int y, int size)
-{
-	for (int i = 0; i < size; i++)
-	{
-		render(x+(i*2), y, "¤±");
-	}
-}
+#define SPACE 32
 
 
 int main()
@@ -100,14 +19,22 @@ int main()
 	int width = (buffer.srWindow.Right) - buffer.srWindow.Left;
 	int height = (buffer.srWindow.Bottom) - buffer.srWindow.Top;
 
-	int x = width/2;
-	int y = height - 5;
-
 	char key = 0;
+	
+	int playerSize = 11; // í™€ìˆ˜
+	int playerSpeed = 4;
+	int x = width / 2 - playerSize;
+	int y = height - 15;
+	int stage = 0;
+	int maxStage = 3;
+	int enemyCount = 0;
 
-	int playerSize = 8;
+	struct Player player = { x - playerSize, y, playerSpeed, playerSize };
+	struct Ball ball = { x + playerSize, y - 2, 2.0f,1.0f,1 };
+	struct Wall wall = { 0,0,0 };
+	struct BRICK brick = { 0,0,1 };
 
-	struct Player player = { (int)(width / 2) - playerSize, height - 5, 4, playerSize};
+	int tick = 0;
 
 	while (1)
 	{
@@ -117,6 +44,15 @@ int main()
 
 		if (_kbhit())
 		{
+			if (pause == 3)
+			{
+				pause = 2;
+				x = width / 2 - playerSize;
+				y = height - 15;
+				ball.positionX = x + playerSize;
+				ball.positionY = y - 2;
+				ball.dY = -ball.dY;
+			}
 			key = _getch();
 			if (key == -32 || key == 0)
 			{
@@ -124,24 +60,87 @@ int main()
 			}
 			switch (key)
 			{
+			case SPACE:
+				pause = !pause;
+				break;
+				
+			case 122: // Z
+				if (launch == 0)
+				{
+					launch = !launch;
+				}
+				break;
+			case 90: // z
+				if (launch == 0)
+				{
+					launch = !launch;
+				}
+				break;
+
 			case LEFT:
-				if (x - player.speed >= 0 )
+				if (x - player.speed > 0 )
 				{
 					x += -player.speed;
 				}
+				else
+				{
+					x = 0;
+				}
 				break;
+
 			case RIGHT:
 				if (x + player.speed + player.size * 2  < width)
 				{
 					x += player.speed;
+				}
+				else
+				{
+					x = width-player.size*2;
 				}
 				break;
 			default: render(x, y, "exception\n");
 				break;
 			}
 		}
+		if (pause == 0)
+		{
+			renderMap(width, height);
+			renderPlayer(x, y, player.size);
+			renderStage(4, 2, width, height, stage, enemyCount);
+			if (enemyCount <= 0 && stage < maxStage)
+			{
+				stage++;
+				renderStage(4, 2, width, height, stage, enemyCount);
+			}
+			if (launch == 0)
+			{
+				ball.positionX = x + playerSize;
+				ball.positionY = y - 1;
 
-		renderPlayer(x, y, player.size);
+				renderBall((int)ball.positionX, (int)ball.positionY);
+				render(width / 2 - 12, height - 5, "Zí‚¤ë¥¼ ìž…ë ¥í•´ì„œ ì‹œìž‘í•˜ì„¸ìš”");
+			}
+			else
+			{
+				if (tick >= 10)
+				{
+					checkWallCollision(&ball, width, height);
+					checkPlayerCollision(&ball, x, y, player.size);
+					checkBrickCollision();
+					ball.lastX = ball.positionX;
+					ball.lastY = ball.positionY;
+					launchGame(&ball);
+					tick = 0;
+				}
+				renderBall((int)ball.positionX, (int)ball.positionY);
+			}
+		}
+		else
+		{
+			renderPause(width/2 - 5, height/2);
+		}
+		
+		tick++;
 	}
 
 	release();
