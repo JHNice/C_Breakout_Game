@@ -15,8 +15,8 @@ struct Ball
 	float dX;
 	float dY;
 	int damage;
-	float lastX;
-	float lastY;
+	float afterX;
+	float afterY;
 };
 
 struct Wall
@@ -26,9 +26,9 @@ struct Wall
 	int wallType;
 };
 
-struct BRICK
+typedef struct BRICK
 {
 	int positionX;
 	int positionY;
 	int hp;
-};
+}Brick;

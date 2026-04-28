@@ -1,6 +1,9 @@
 #pragma once
 #include "gameObject.h"
 
+#define MAP_MAXSIZE_X 60
+#define MAP_MAXSIZE_Y 30
+
 int pause = 2;
 
 void checkWallCollision(struct Ball* ball, int width, int height)
@@ -37,7 +40,31 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 	}
 }
 
-void checkBrickCollision()
+void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y])
 {
+	for (int y = 0; y < MAP_MAXSIZE_Y; y++)
+	{
+		for (int x = 0;x < MAP_MAXSIZE_X;x++)
+		{
+			if (map[x][y] != NULL && map[x][y]->hp > 0)
+			{
+				int brickX = map[x][y]->positionX;
+				int brickY = map[x][y]->positionY;
 
+				if (ball->afterX == brickX && ball->afterY == brickY)
+				{
+					if (ball->afterX == brickX)
+					{
+						ball->dY = -ball->dY;
+					}
+					else if (ball->afterY == brickY)
+					{
+						ball->dX = -ball->dX;
+					}
+					map[x][y]->hp = map[x][y]->hp - ball->damage;
+					return 0;
+				}
+			}
+		}
+	}
 }

@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include "buffer.h"
-#include "gameObject.h"
 #include "render.h"
 #include "collision.h"
 
 #define LEFT 75
 #define RIGHT 77
 #define SPACE 32
+
 
 
 int main()
@@ -21,20 +20,18 @@ int main()
 
 	char key = 0;
 	
-	int playerSize = 11; // 홀수
+	int playerSize = 11;
 	int playerSpeed = 4;
 	int x = width / 2 - playerSize;
 	int y = height - 15;
-	int stage = 0;
-	int maxStage = 3;
-	int enemyCount = 0;
 
 	struct Player player = { x - playerSize, y, playerSpeed, playerSize };
 	struct Ball ball = { x + playerSize, y - 2, 2.0f,1.0f,1 };
 	struct Wall wall = { 0,0,0 };
-	struct BRICK brick = { 0,0,1 };
+	
+	int tick = 0; // 공 속도 조절
 
-	int tick = 0;
+	createMap(30, 20, width);
 
 	while (1)
 	{
@@ -106,12 +103,8 @@ int main()
 		{
 			renderMap(width, height);
 			renderPlayer(x, y, player.size);
-			renderStage(4, 2, width, height, stage, enemyCount);
-			if (enemyCount <= 0 && stage < maxStage)
-			{
-				stage++;
-				renderStage(4, 2, width, height, stage, enemyCount);
-			}
+			renderBrick();
+			
 			if (launch == 0)
 			{
 				ball.positionX = x + playerSize;
@@ -122,13 +115,13 @@ int main()
 			}
 			else
 			{
-				if (tick >= 10)
+				if (tick >= 4)
 				{
 					checkWallCollision(&ball, width, height);
 					checkPlayerCollision(&ball, x, y, player.size);
-					checkBrickCollision();
-					ball.lastX = ball.positionX;
-					ball.lastY = ball.positionY;
+					ball.afterX = ball.positionX+ball.dX;
+					ball.afterY = ball.positionY-ball.dY;
+					checkBrickCollision(&ball, map);
 					launchGame(&ball);
 					tick = 0;
 				}

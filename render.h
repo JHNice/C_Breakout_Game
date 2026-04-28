@@ -1,9 +1,12 @@
 #pragma once
 #include <stdio.h>
+#include <stdlib.h>
 #include "buffer.h"
 #include "gameObject.h"
+#include "collision.h"
 
-int pause = 2;
+
+
 int launch = 0;
 int score = 0;
 
@@ -29,23 +32,6 @@ void renderBall(float x, float y)
 	render(x, y, "ㅇ");
 }
 
-void renderStage(int x, int y, int width, int height, int stage, int enemyCount)
-{
-	switch(stage)
-		case 0:
-	{
-		for (int i = 0; i <= height / 2; i++)
-		{
-			for (int j = 0; j >= width; j + 2)
-			{
-				render(x, y, "ㅋ");
-				enemyCount++;
-			}
-		}
-		
-	}
-	
-}
 
 void renderPause(int x, int y)
 {
@@ -73,6 +59,52 @@ void renderMap(int width, int height)
 	{
 		render(0, i, "ㅣ");
 		render(width-2, i, "ㅣ");
+	}
+}
+
+Brick* createBrick(int x, int y)
+{
+	Brick* newBrick = (Brick*)malloc(sizeof(Brick));
+
+	newBrick->positionX = x;
+	newBrick->positionY = y;
+	newBrick->hp = 1;
+
+	return newBrick;
+}
+
+
+Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y];
+
+void createMap(int sizeX, int sizeY, int width)
+{
+	int totalSizeX = sizeX * 2;
+	int startX = (width - totalSizeX) / 2;
+	int startY = 4;
+
+	for (int y = 0; y < sizeY; y++)
+	{
+		for (int x = 0; x < sizeX; x++)
+		{
+			if (x < MAP_MAXSIZE_X && y < MAP_MAXSIZE_Y)
+			{
+				map[x][y] = createBrick(startX + x*2,startY + y);
+			}
+		}
+	}
+}
+
+void renderBrick()
+{
+	for (int y = 0; y < MAP_MAXSIZE_Y; y++)
+	{
+		for (int x = 0; x < MAP_MAXSIZE_X;x++)
+		{
+			if (map[x][y] != NULL && map[x][y]->hp > 0)
+			{
+				render(map[x][y]->positionX, map[x][y]->positionY, "ㅁ");
+			}
+		}
 	}
 }
 
