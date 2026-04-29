@@ -1,10 +1,11 @@
 #pragma once
 #include "gameObject.h"
 
-#define MAP_MAXSIZE_X 60
+#define MAP_MAXSIZE_X 90
 #define MAP_MAXSIZE_Y 30
 
 int pause = 2;
+int hitScore = 0;
 
 void checkWallCollision(struct Ball* ball, int width, int height)
 {
@@ -38,9 +39,10 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 			}
 		}
 	}
+
 }
 
-void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y])
+void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y], int height)
 {
 	for (int y = 0; y < MAP_MAXSIZE_Y; y++)
 	{
@@ -50,19 +52,22 @@ void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZ
 			{
 				int brickX = map[x][y]->positionX;
 				int brickY = map[x][y]->positionY;
-
-				if (ball->afterX == brickX && ball->afterY == brickY)
+				
+				if (ball->positionX == brickX && ball->afterY == brickY)
 				{
-					if (ball->afterX == brickX)
-					{
-						ball->dY = -ball->dY;
-					}
-					else if (ball->afterY == brickY)
-					{
-						ball->dX = -ball->dX;
-					}
+					ball->dY = -ball->dY;
 					map[x][y]->hp = map[x][y]->hp - ball->damage;
-					return 0;
+					hitScore++;
+					itemDrop(map[x][y]->positionX,map[x][y]->positionY, height);
+					return;
+				}
+				if (ball->positionY == brickY && ball->afterX == brickX)
+				{
+					ball->dX = -ball->dX;
+					map[x][y]->hp = map[x][y]->hp - ball->damage;
+					hitScore++;
+					itemDrop(map[x][y]->positionX, map[x][y]->positionY, height);
+					return;
 				}
 			}
 		}

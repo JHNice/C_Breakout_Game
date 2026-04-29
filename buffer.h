@@ -9,6 +9,8 @@ int size = sizeof(screen) / sizeof(screen[0]);
 
 void initialize()
 {
+	srand(time(NULL));
+
 	CONSOLE_CURSOR_INFO cursor;
 
 	cursor.dwSize = 1; // 커서 사이즈 조절 1~100

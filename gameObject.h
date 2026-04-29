@@ -32,3 +32,10 @@ typedef struct BRICK
 	int positionY;
 	int hp;
 }Brick;
+
+struct ITEM
+{
+	int positionX;
+	int positionY;
+	int itemNumber;
+};

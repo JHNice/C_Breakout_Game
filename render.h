@@ -5,10 +5,7 @@
 #include "gameObject.h"
 #include "collision.h"
 
-
-
 int launch = 0;
-int score = 0;
 
 void render(int x, int y, const char* character)
 {
@@ -108,9 +105,12 @@ void renderBrick()
 	}
 }
 
-void scoreCount()
+void renderScore(int width, int height)
 {
-
+	char scoreText[20];
+	_itoa_s(hitScore, scoreText, sizeof(scoreText), 10);
+	render(4, height - 5, "점수 : ");
+	render(12, height - 5, scoreText);
 }
 
 void launchGame(struct Ball* ball)
@@ -122,4 +122,15 @@ void launchGame(struct Ball* ball)
 	}
 }
 
+void itemDrop(int x, int y, int height)
+{
+	int random = rand() % 100 + 1;
+	if (random <= 10)
+	{
+		for (int i = 0; i < height - y; i++)
+		{
+			render(x, y + i, "♥");
+		}
+	}
+}
 

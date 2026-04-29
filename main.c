@@ -10,6 +10,7 @@
 
 int main()
 {
+	
 	initialize();
 
 	CONSOLE_SCREEN_BUFFER_INFO buffer;
@@ -31,7 +32,7 @@ int main()
 	
 	int tick = 0; // 공 속도 조절
 
-	createMap(30, 20, width);
+	createMap(60, 40, width);
 
 	while (1)
 	{
@@ -104,7 +105,8 @@ int main()
 			renderMap(width, height);
 			renderPlayer(x, y, player.size);
 			renderBrick();
-			
+			renderScore(width, height);
+
 			if (launch == 0)
 			{
 				ball.positionX = x + playerSize;
@@ -121,10 +123,12 @@ int main()
 					checkPlayerCollision(&ball, x, y, player.size);
 					ball.afterX = ball.positionX+ball.dX;
 					ball.afterY = ball.positionY-ball.dY;
-					checkBrickCollision(&ball, map);
+					checkBrickCollision(&ball, map, height);
 					launchGame(&ball);
+					
 					tick = 0;
 				}
+				
 				renderBall((int)ball.positionX, (int)ball.positionY);
 			}
 		}
