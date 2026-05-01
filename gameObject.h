@@ -1,5 +1,9 @@
 #pragma once
 
+#define MAX_FALLING_ITEMS 20
+#define MAP_MAXSIZE_X 90
+#define MAP_MAXSIZE_Y 30
+
 struct Player
 {
 	float positionX;
@@ -31,11 +35,15 @@ typedef struct BRICK
 	int positionX;
 	int positionY;
 	int hp;
+	int item;
 }Brick;
 
-struct ITEM
+typedef struct ITEM
 {
 	int positionX;
 	int positionY;
+	int hp;
 	int itemNumber;
-};
+}Item;
+
+Item fallingItems[MAX_FALLING_ITEMS];

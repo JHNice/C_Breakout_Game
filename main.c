@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "render.h"
-#include "collision.h"
 
 #define LEFT 75
 #define RIGHT 77
@@ -25,6 +24,8 @@ int main()
 	int playerSpeed = 4;
 	int x = width / 2 - playerSize;
 	int y = height - 15;
+	int itemTick = 0;
+	
 
 	struct Player player = { x - playerSize, y, playerSpeed, playerSize };
 	struct Ball ball = { x + playerSize, y - 2, 2.0f,1.0f,1 };
@@ -32,7 +33,7 @@ int main()
 	
 	int tick = 0; // 공 속도 조절
 
-	createMap(60, 40, width);
+	createMap(40, 30, width);
 
 	while (1)
 	{
@@ -105,6 +106,7 @@ int main()
 			renderMap(width, height);
 			renderPlayer(x, y, player.size);
 			renderBrick();
+			renderFallingItems();
 			renderScore(width, height);
 
 			if (launch == 0)
@@ -117,13 +119,20 @@ int main()
 			}
 			else
 			{
-				if (tick >= 4)
+				if (tick >= 2)
 				{
 					checkWallCollision(&ball, width, height);
 					checkPlayerCollision(&ball, x, y, player.size);
+
 					ball.afterX = ball.positionX+ball.dX;
 					ball.afterY = ball.positionY-ball.dY;
+
 					checkBrickCollision(&ball, map, height);
+
+					player.positionX = x;
+					player.positionY = y;
+
+					checkItemCollision(&player, height);
 					launchGame(&ball);
 					
 					tick = 0;

@@ -11,12 +11,12 @@
       "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:collision.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|E:\\git\\C_Breakout_Game\\render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|E:\\git\\C_Breakout_Game\\gameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:gameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|E:\\git\\C_Breakout_Game\\render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|E:\\git\\C_Breakout_Game\\buffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -29,7 +29,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
+          "DockedWidth": 175,
           "SelectedChildIndex": 2,
           "Children": [
             {
@@ -46,9 +46,9 @@
               "Title": "main.c",
               "DocumentMoniker": "E:\\git\\C_Breakout_Game\\main.c",
               "RelativeDocumentMoniker": "main.c",
-              "ToolTip": "E:\\git\\C_Breakout_Game\\main.c",
-              "RelativeToolTip": "main.c",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIgAAAAmAAAAAAAAAA==",
+              "ToolTip": "E:\\git\\C_Breakout_Game\\main.c*",
+              "RelativeToolTip": "main.c*",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAAAIoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-04-24T09:12:51.966Z",
               "EditorCaption": ""
@@ -56,18 +56,18 @@
           ]
         },
         {
-          "DockedWidth": 200,
+          "DockedWidth": 225,
           "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "gameObject.h",
               "DocumentMoniker": "E:\\git\\C_Breakout_Game\\gameObject.h",
               "RelativeDocumentMoniker": "gameObject.h",
               "ToolTip": "E:\\git\\C_Breakout_Game\\gameObject.h",
               "RelativeToolTip": "gameObject.h",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACcAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-27T09:41:27.106Z",
               "EditorCaption": ""
@@ -80,20 +80,20 @@
               "RelativeDocumentMoniker": "collision.h",
               "ToolTip": "E:\\git\\C_Breakout_Game\\collision.h",
               "RelativeToolTip": "collision.h",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAEQAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAF4AAAAAAAAAAAD4v3QAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-27T12:19:02.746Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "render.h",
               "DocumentMoniker": "E:\\git\\C_Breakout_Game\\render.h",
               "RelativeDocumentMoniker": "render.h",
               "ToolTip": "E:\\git\\C_Breakout_Game\\render.h",
               "RelativeToolTip": "render.h",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAAAHkAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAkwJ4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-27T09:19:37.05Z",
               "EditorCaption": ""
@@ -106,7 +106,7 @@
               "RelativeDocumentMoniker": "buffer.h",
               "ToolTip": "E:\\git\\C_Breakout_Game\\buffer.h",
               "RelativeToolTip": "buffer.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-27T09:14:38.515Z",
               "EditorCaption": ""

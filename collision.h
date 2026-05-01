@@ -1,11 +1,9 @@
 #pragma once
 #include "gameObject.h"
 
-#define MAP_MAXSIZE_X 90
-#define MAP_MAXSIZE_Y 30
-
 int pause = 2;
 int hitScore = 0;
+int itemScore = 0;
 
 void checkWallCollision(struct Ball* ball, int width, int height)
 {
@@ -57,17 +55,108 @@ void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZ
 				{
 					ball->dY = -ball->dY;
 					map[x][y]->hp = map[x][y]->hp - ball->damage;
+					
+					if (map[x][y]->hp <= 0 && map[x][y]->item != -1)
+					{
+						for (int i = 0; i < MAX_FALLING_ITEMS; i++)
+						{
+							if (fallingItems[i].hp == 0)
+							{
+								fallingItems[i].positionX = map[x][y]->positionX;
+								fallingItems[i].positionY = map[x][y]->positionY;
+								fallingItems[i].itemNumber = map[x][y]->item;
+								fallingItems[i].hp = 1;
+
+								map[x][y]->item = -1;
+								break;
+							}
+						}
+					}
+
 					hitScore++;
-					itemDrop(map[x][y]->positionX,map[x][y]->positionY, height);
 					return;
 				}
-				if (ball->positionY == brickY && ball->afterX == brickX)
+				else if (ball->positionY == brickY && ball->afterX == brickX)
 				{
 					ball->dX = -ball->dX;
 					map[x][y]->hp = map[x][y]->hp - ball->damage;
+
+					if (map[x][y]->hp <= 0 && map[x][y]->item != -1)
+					{
+						for (int i = 0; i < MAX_FALLING_ITEMS; i++)
+						{
+							if (fallingItems[i].hp == 0)
+							{
+								fallingItems[i].positionX = map[x][y]->positionX;
+								fallingItems[i].positionY = map[x][y]->positionY;
+								fallingItems[i].itemNumber = map[x][y]->item;
+								fallingItems[i].hp = 1;
+
+								map[x][y]->item = -1;
+								break;
+							}
+						}
+					}
+
 					hitScore++;
-					itemDrop(map[x][y]->positionX, map[x][y]->positionY, height);
 					return;
+				}
+			}
+		}
+	}
+
+	for (int y = 0; y < MAP_MAXSIZE_Y; y++)
+	{
+		for (int x = 0;x < MAP_MAXSIZE_X;x++)
+		{
+			if (map[x][y] != NULL && map[x][y]->hp > 0)
+			{
+				int brickX = map[x][y]->positionX;
+				int brickY = map[x][y]->positionY;
+
+				if (ball->afterX == brickX && ball->afterY == brickY)
+				{
+					ball->dX = -ball->dX;
+					ball->dY = -ball->dY;
+					map[x][y]->hp = map[x][y]->hp - ball->damage;
+					hitScore++;
+					return;
+				}
+			}
+		}
+	}
+}
+
+void checkItemCollision(struct Player* player, int height)
+{
+	for (int i = 0; i < MAX_FALLING_ITEMS; i++)
+	{
+		if (fallingItems[i].hp > 0)
+		{
+			fallingItems[i].positionY += 1;
+
+			if (fallingItems[i].positionY >= height)
+			{
+				fallingItems[i].hp = 0;
+				continue;
+			}
+
+			if (fallingItems[i].positionY == player->positionY)
+			{
+				if (fallingItems[i].positionX >= player->positionX && fallingItems[i].positionX <= player->positionX + (player->size * 2))
+				{
+					fallingItems[i].hp = 0;
+
+					// 아이템 번호에 따라 효과 지정
+					switch (fallingItems[i].itemNumber)
+					{
+					case 0:
+						itemScore += 10; // 테스트, 아이템 점수 증가
+						break;
+					case 1:
+						player->size += 2; // 사이즈 증가
+						break;
+					}
 				}
 			}
 		}

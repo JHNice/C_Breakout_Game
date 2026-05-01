@@ -59,6 +59,20 @@ void renderMap(int width, int height)
 	}
 }
 
+Item* createItem(int x, int y)
+{
+	Item* newItem = (Item*)malloc(sizeof(Item));
+
+	int random = rand() % 2;
+
+	newItem->positionX = x;
+	newItem->positionY = y;
+	newItem->hp = 1;
+	newItem->itemNumber = random;
+
+	return newItem;
+}
+
 Brick* createBrick(int x, int y)
 {
 	Brick* newBrick = (Brick*)malloc(sizeof(Brick));
@@ -66,6 +80,15 @@ Brick* createBrick(int x, int y)
 	newBrick->positionX = x;
 	newBrick->positionY = y;
 	newBrick->hp = 1;
+
+	if (rand() % 100 < 10)
+	{
+		newBrick->item = rand() % 2;
+	}
+	else
+	{
+		newBrick->item = -1;
+	}
 
 	return newBrick;
 }
@@ -105,12 +128,35 @@ void renderBrick()
 	}
 }
 
+void renderFallingItems()
+{
+	for (int i = 0; i < MAX_FALLING_ITEMS; i++)
+	{
+		if (fallingItems[i].hp > 0)
+		{
+			if (fallingItems[i].itemNumber == 0)
+			{
+				render(fallingItems[i].positionX, fallingItems[i].positionY, "♥");
+			}
+			else if (fallingItems[i].itemNumber == 1)
+			{
+				render(fallingItems[i].positionX, fallingItems[i].positionY, "★");
+			}
+		}
+	}
+}
+
 void renderScore(int width, int height)
 {
 	char scoreText[20];
+	char itemScoreText[20];
 	_itoa_s(hitScore, scoreText, sizeof(scoreText), 10);
+	_itoa_s(itemScore, itemScoreText, sizeof(itemScoreText), 10);
 	render(4, height - 5, "점수 : ");
 	render(12, height - 5, scoreText);
+	render(4, height - 6, "itemScore : ");
+	render(14, height - 6, itemScoreText);
+	
 }
 
 void launchGame(struct Ball* ball)
@@ -122,15 +168,4 @@ void launchGame(struct Ball* ball)
 	}
 }
 
-void itemDrop(int x, int y, int height)
-{
-	int random = rand() % 100 + 1;
-	if (random <= 10)
-	{
-		for (int i = 0; i < height - y; i++)
-		{
-			render(x, y + i, "♥");
-		}
-	}
-}
 
