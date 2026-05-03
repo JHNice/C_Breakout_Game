@@ -11,18 +11,20 @@ E:\git\C_Breakout_Game\render.h(29,9): warning C4244: '함수': 'float'에서 'i
 E:\git\C_Breakout_Game\render.h(29,12): warning C4244: '함수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-E:\git\C_Breakout_Game\main.c(51,24): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(52,24): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(114,24): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(115,24): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(117,25): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(117,46): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(132,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(133,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(141,25): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(141,46): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(35,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(36,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(65,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(66,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(130,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(131,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(133,29): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(133,54): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(158,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(159,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(161,42): warning C4047: '함수': 'Ball *'의 간접 참조 수준이 'Ball (*)[10]'과(와) 다릅니다.
+E:\git\C_Breakout_Game\main.c(161,42): warning C4024: 'checkItemCollision': 형식 및 실제 매개 변수 3의 형식이 서로 다릅니다.
+E:\git\C_Breakout_Game\main.c(170,30): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+E:\git\C_Breakout_Game\main.c(170,55): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 E:\git\C_Breakout_Game\main.c(30,29): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 E:\git\C_Breakout_Game\main.c(30,43): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(31,25): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-E:\git\C_Breakout_Game\main.c(31,41): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   C_Breakout_Game.vcxproj -> E:\git\C_Breakout_Game\x64\Debug\C_Breakout_Game.exe

@@ -27,10 +27,18 @@ int main()
 	int itemTick = 0;
 	
 
-	struct Player player = { x - playerSize, y, playerSpeed, playerSize };
-	struct Ball ball = { x + playerSize, y - 2, 2.0f,1.0f,1 };
+	struct Player player = { x - playerSize, y, playerSpeed, playerSize, 1 };
 	struct Wall wall = { 0,0,0 };
+	// struct Ball ball = { x + playerSize, y - 2, 2.0f,1.0f,1 };
 	
+	struct Ball balls[MAX_BALLS] = { 0 };
+	balls[0].positionX = x + playerSize;
+	balls[0].positionY = y - 2;
+	balls[0].dX = 2.0f;
+	balls[0].dY = 1.0f;
+	balls[0].damage = 1;
+	balls[0].active = 1;
+
 	int tick = 0; // 공 속도 조절
 
 	createMap(40, 30, width);
@@ -48,9 +56,17 @@ int main()
 				pause = 2;
 				x = width / 2 - playerSize;
 				y = height - 15;
-				ball.positionX = x + playerSize;
-				ball.positionY = y - 2;
-				ball.dY = -ball.dY;
+
+				for (int i = 0; i < MAX_BALLS; i++)
+				{
+					balls[i].active = 0;
+				}
+
+				balls[0].positionX = x + playerSize;
+				balls[0].positionY = y - 2;
+				balls[0].dX = 2.0f;
+				balls[0].dY = -1.0f;
+				balls[0].active = 1;
 			}
 			key = _getch();
 			if (key == -32 || key == 0)
@@ -111,34 +127,49 @@ int main()
 
 			if (launch == 0)
 			{
-				ball.positionX = x + playerSize;
-				ball.positionY = y - 1;
+				balls[0].positionX = x + playerSize;
+				balls[0].positionY = y - 1;
 
-				renderBall((int)ball.positionX, (int)ball.positionY);
+				renderBall((int)balls[0].positionX, (int)balls[0].positionY);
 				render(width / 2 - 12, height - 5, "Z키를 입력해서 시작하세요");
 			}
 			else
 			{
 				if (tick >= 2)
 				{
-					checkWallCollision(&ball, width, height);
-					checkPlayerCollision(&ball, x, y, player.size);
+					for (int i = 0; i < MAX_BALLS; i++)
+					{
+						if (balls[i].active == 1)
+						{
+						checkWallCollision(&balls[i], width, height, &player);
+						checkPlayerCollision(&balls[i], x, y, player.size);
 
-					ball.afterX = ball.positionX+ball.dX;
-					ball.afterY = ball.positionY-ball.dY;
+						balls[i].afterX = balls[i].positionX+balls[i].dX;
+						balls[i].afterY = balls[i].positionY-balls[i].dY;
 
-					checkBrickCollision(&ball, map, height);
+						checkBrickCollision(&balls[i], map, height);
+
+						launchGame(&balls[i]);
+						}
+
+					}
+
 
 					player.positionX = x;
 					player.positionY = y;
 
-					checkItemCollision(&player, height);
-					launchGame(&ball);
+					checkItemCollision(&player, height, &balls);
 					
 					tick = 0;
 				}
 				
-				renderBall((int)ball.positionX, (int)ball.positionY);
+				for (int i = 0; i < MAX_BALLS; i++)
+				{
+					if (balls[i].active == 1)
+					{
+					renderBall((int)balls[i].positionX, (int)balls[i].positionY);
+					}
+				}
 			}
 		}
 		else

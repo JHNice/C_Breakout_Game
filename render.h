@@ -29,7 +29,6 @@ void renderBall(float x, float y)
 	render(x, y, "ㅇ");
 }
 
-
 void renderPause(int x, int y)
 {
 	if (pause == 1)
@@ -59,20 +58,6 @@ void renderMap(int width, int height)
 	}
 }
 
-Item* createItem(int x, int y)
-{
-	Item* newItem = (Item*)malloc(sizeof(Item));
-
-	int random = rand() % 2;
-
-	newItem->positionX = x;
-	newItem->positionY = y;
-	newItem->hp = 1;
-	newItem->itemNumber = random;
-
-	return newItem;
-}
-
 Brick* createBrick(int x, int y)
 {
 	Brick* newBrick = (Brick*)malloc(sizeof(Brick));
@@ -83,7 +68,7 @@ Brick* createBrick(int x, int y)
 
 	if (rand() % 100 < 10)
 	{
-		newBrick->item = rand() % 2;
+		newBrick->item = rand() % 3;
 	}
 	else
 	{
@@ -134,14 +119,27 @@ void renderFallingItems()
 	{
 		if (fallingItems[i].hp > 0)
 		{
-			if (fallingItems[i].itemNumber == 0)
+			switch (fallingItems[i].itemNumber)
 			{
+			case 0:
 				render(fallingItems[i].positionX, fallingItems[i].positionY, "♥");
-			}
-			else if (fallingItems[i].itemNumber == 1)
-			{
+				break;
+			case 1:
 				render(fallingItems[i].positionX, fallingItems[i].positionY, "★");
+				break;
+			case 2:
+				render(fallingItems[i].positionX, fallingItems[i].positionY, "＠");
+				break;
 			}
+
+			//	if (fallingItems[i].itemNumber == 0)
+			//	{
+			//		render(fallingItems[i].positionX, fallingItems[i].positionY, "♥");
+			//	}
+			//	else if (fallingItems[i].itemNumber == 1)
+			//	{
+			//		render(fallingItems[i].positionX, fallingItems[i].positionY, "★");
+			//	}
 		}
 	}
 }
@@ -150,13 +148,16 @@ void renderScore(int width, int height)
 {
 	char scoreText[20];
 	char itemScoreText[20];
+	char playerLifeText[2];
 	_itoa_s(hitScore, scoreText, sizeof(scoreText), 10);
 	_itoa_s(itemScore, itemScoreText, sizeof(itemScoreText), 10);
+	_itoa_s(playerLife, playerLifeText, sizeof(playerLifeText), 10);
 	render(4, height - 5, "점수 : ");
 	render(12, height - 5, scoreText);
 	render(4, height - 6, "itemScore : ");
 	render(14, height - 6, itemScoreText);
-	
+	render(4, height - 4, "LIFE : ");
+	render(12, height - 4, playerLifeText);
 }
 
 void launchGame(struct Ball* ball)

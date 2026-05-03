@@ -4,8 +4,9 @@
 int pause = 2;
 int hitScore = 0;
 int itemScore = 0;
+int playerLife = 0;
 
-void checkWallCollision(struct Ball* ball, int width, int height)
+void checkWallCollision(struct Ball* ball, int width, int height, struct Player* player)
 {
 	if (ball->positionX <= 1)
 	{
@@ -15,9 +16,15 @@ void checkWallCollision(struct Ball* ball, int width, int height)
 	{
 		ball->dX = -ball->dX;
 	}
+	// Life 관리
 	else if (ball->positionY >= height - 2)
 	{
-		pause = 3;
+		player->life--;
+		ball->active = 0;
+		if (player->life <= 0)
+		{
+			pause = 3;
+		}
 	}
 	else if (ball->positionY <= 1)
 	{
@@ -34,6 +41,14 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 			if (ball->dY < 0)
 			{
 				ball->dY = -ball->dY;
+				if (ball->dX >= 0 && ball->positionX <= playerX + playerSize / 2)
+				{
+					ball->dX = -ball->dX;
+				}
+				if (ball->dX < 0 && ball->positionX > playerX + playerSize / 2)
+				{
+					ball->dX = -ball->dX;
+				}
 			}
 		}
 	}
@@ -127,7 +142,7 @@ void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZ
 	}
 }
 
-void checkItemCollision(struct Player* player, int height)
+void checkItemCollision(struct Player* player, int height, struct Ball* balls)
 {
 	for (int i = 0; i < MAX_FALLING_ITEMS; i++)
 	{
@@ -156,6 +171,25 @@ void checkItemCollision(struct Player* player, int height)
 					case 1:
 						player->size += 2; // 사이즈 증가
 						break;
+					case 2: // 공 추가
+						for (int j = 0;j < MAX_BALLS;j++)
+						{
+							if (balls[j].active == 0)
+							{
+								balls[j].positionX = player->positionX + player->size;
+								balls[j].positionY = player->positionY - 1;
+								if (rand() % 10 < 5)
+								{
+									balls[j].dX = -balls[0].dX;
+								}
+								balls[j].dX = 2.0f;
+								balls[j].dY = 1.0f;
+								balls[j].damage = 1;
+								balls[j].active = 1;
+								player->life++;
+								break;
+							}
+						}
 					}
 				}
 			}

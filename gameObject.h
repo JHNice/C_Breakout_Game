@@ -3,6 +3,7 @@
 #define MAX_FALLING_ITEMS 20
 #define MAP_MAXSIZE_X 90
 #define MAP_MAXSIZE_Y 30
+#define MAX_BALLS 10
 
 struct Player
 {
@@ -10,6 +11,7 @@ struct Player
 	float positionY;
 	int speed;
 	int size;
+	int life;
 };
 
 struct Ball
@@ -21,6 +23,7 @@ struct Ball
 	int damage;
 	float afterX;
 	float afterY;
+	int active;
 };
 
 struct Wall
