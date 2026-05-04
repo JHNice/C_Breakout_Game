@@ -123,7 +123,7 @@ int main()
 			renderPlayer(x, y, player.size);
 			renderBrick();
 			renderFallingItems();
-			renderScore(width, height);
+			renderScore(width, height, &player);
 
 			if (launch == 0)
 			{

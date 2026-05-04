@@ -3,7 +3,7 @@
 #define MAX_FALLING_ITEMS 20
 #define MAP_MAXSIZE_X 90
 #define MAP_MAXSIZE_Y 30
-#define MAX_BALLS 10
+#define MAX_BALLS 100
 
 struct Player
 {

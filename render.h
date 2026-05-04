@@ -131,27 +131,18 @@ void renderFallingItems()
 				render(fallingItems[i].positionX, fallingItems[i].positionY, "＠");
 				break;
 			}
-
-			//	if (fallingItems[i].itemNumber == 0)
-			//	{
-			//		render(fallingItems[i].positionX, fallingItems[i].positionY, "♥");
-			//	}
-			//	else if (fallingItems[i].itemNumber == 1)
-			//	{
-			//		render(fallingItems[i].positionX, fallingItems[i].positionY, "★");
-			//	}
 		}
 	}
 }
 
-void renderScore(int width, int height)
+void renderScore(int width, int height, struct Player* player)
 {
 	char scoreText[20];
 	char itemScoreText[20];
-	char playerLifeText[2];
+	char playerLifeText[10];
 	_itoa_s(hitScore, scoreText, sizeof(scoreText), 10);
 	_itoa_s(itemScore, itemScoreText, sizeof(itemScoreText), 10);
-	_itoa_s(playerLife, playerLifeText, sizeof(playerLifeText), 10);
+	_itoa_s(player->life, playerLifeText, sizeof(playerLifeText), 10);
 	render(4, height - 5, "점수 : ");
 	render(12, height - 5, scoreText);
 	render(4, height - 6, "itemScore : ");

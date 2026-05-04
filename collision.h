@@ -4,17 +4,24 @@
 int pause = 2;
 int hitScore = 0;
 int itemScore = 0;
-int playerLife = 0;
 
 void checkWallCollision(struct Ball* ball, int width, int height, struct Player* player)
 {
-	if (ball->positionX <= 1)
+	if (ball->positionX <= 2)
 	{
 		ball->dX = -ball->dX;
+		if (rand() % 2 == 0)
+		{
+			ball->positionX += 2;
+		}
 	}
 	else if (ball->positionX >= width - 2)
 	{
 		ball->dX = -ball->dX;
+		if (rand() % 2 == 0)
+		{
+			ball->positionX -= 2;
+		}
 	}
 	// Life 관리
 	else if (ball->positionY >= height - 2)
@@ -26,9 +33,13 @@ void checkWallCollision(struct Ball* ball, int width, int height, struct Player*
 			pause = 3;
 		}
 	}
-	else if (ball->positionY <= 1)
+	else if (ball->positionY <= 2)
 	{
 		ball->dY = -ball->dY;
+		if (rand() % 2 == 0)
+		{
+			ball->positionY += 1;
+		}
 	}
 }
 
@@ -41,12 +52,20 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 			if (ball->dY < 0)
 			{
 				ball->dY = -ball->dY;
-				if (ball->dX >= 0 && ball->positionX <= playerX + playerSize / 2)
+				if (ball->dX >= 0 && ball->positionX <= playerX + playerSize -4)
 				{
+					if (rand() % 10 < 5)
+					{
+						ball->positionY--;
+					}
 					ball->dX = -ball->dX;
 				}
-				if (ball->dX < 0 && ball->positionX > playerX + playerSize / 2)
+				if (ball->dX < 0 && ball->positionX > playerX + playerSize +4)
 				{
+					if (rand() % 10 < 5)
+					{
+						ball->positionY--;
+					}
 					ball->dX = -ball->dX;
 				}
 			}
@@ -57,6 +76,9 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 
 void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y], int height)
 {
+	int hitX = 0;
+	int hitY = 0;
+
 	for (int y = 0; y < MAP_MAXSIZE_Y; y++)
 	{
 		for (int x = 0;x < MAP_MAXSIZE_X;x++)
@@ -65,36 +87,14 @@ void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZ
 			{
 				int brickX = map[x][y]->positionX;
 				int brickY = map[x][y]->positionY;
-				
-				if (ball->positionX == brickX && ball->afterY == brickY)
+
+
+				if (hitY == 0 && (ball->positionX == brickX && ball->afterY == brickY))
 				{
 					ball->dY = -ball->dY;
 					map[x][y]->hp = map[x][y]->hp - ball->damage;
-					
-					if (map[x][y]->hp <= 0 && map[x][y]->item != -1)
-					{
-						for (int i = 0; i < MAX_FALLING_ITEMS; i++)
-						{
-							if (fallingItems[i].hp == 0)
-							{
-								fallingItems[i].positionX = map[x][y]->positionX;
-								fallingItems[i].positionY = map[x][y]->positionY;
-								fallingItems[i].itemNumber = map[x][y]->item;
-								fallingItems[i].hp = 1;
-
-								map[x][y]->item = -1;
-								break;
-							}
-						}
-					}
-
 					hitScore++;
-					return;
-				}
-				else if (ball->positionY == brickY && ball->afterX == brickX)
-				{
-					ball->dX = -ball->dX;
-					map[x][y]->hp = map[x][y]->hp - ball->damage;
+					hitY = 1;
 
 					if (map[x][y]->hp <= 0 && map[x][y]->item != -1)
 					{
@@ -112,34 +112,76 @@ void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZ
 							}
 						}
 					}
-
-					hitScore++;
-					return;
 				}
-			}
-		}
-	}
-
-	for (int y = 0; y < MAP_MAXSIZE_Y; y++)
-	{
-		for (int x = 0;x < MAP_MAXSIZE_X;x++)
-		{
-			if (map[x][y] != NULL && map[x][y]->hp > 0)
-			{
-				int brickX = map[x][y]->positionX;
-				int brickY = map[x][y]->positionY;
-
-				if (ball->afterX == brickX && ball->afterY == brickY)
+				if (hitX == 0 && (ball->positionY == brickY && ball->afterX == brickX))
 				{
 					ball->dX = -ball->dX;
-					ball->dY = -ball->dY;
 					map[x][y]->hp = map[x][y]->hp - ball->damage;
 					hitScore++;
-					return;
+					hitX = 1;
+					if (map[x][y]->hp <= 0 && map[x][y]->item != -1)
+					{
+						for (int i = 0; i < MAX_FALLING_ITEMS; i++)
+						{
+							if (fallingItems[i].hp == 0)
+							{
+								fallingItems[i].positionX = map[x][y]->positionX;
+								fallingItems[i].positionY = map[x][y]->positionY;
+								fallingItems[i].itemNumber = map[x][y]->item;
+								fallingItems[i].hp = 1;
+
+								map[x][y]->item = -1;
+								break;
+							}
+						}
+					}
 				}
 			}
 		}
 	}
+
+	if (hitX == 0 && hitY == 0)
+	{
+		for (int y = 0; y < MAP_MAXSIZE_Y; y++)
+		{
+			for (int x = 0;x < MAP_MAXSIZE_X;x++)
+			{
+				if (map[x][y] != NULL && map[x][y]->hp > 0)
+				{
+					int brickX = map[x][y]->positionX;
+					int brickY = map[x][y]->positionY;
+
+					if (ball->afterX == brickX && ball->afterY == brickY)
+					{
+						ball->dX = -ball->dX;
+						ball->dY = -ball->dY;
+						map[x][y]->hp = map[x][y]->hp - ball->damage;
+						hitScore++;
+
+						if (map[x][y]->hp <= 0 && map[x][y]->item != -1)
+						{
+							for (int i = 0; i < MAX_FALLING_ITEMS; i++)
+							{
+								if (fallingItems[i].hp == 0)
+								{
+									fallingItems[i].positionX = map[x][y]->positionX;
+									fallingItems[i].positionY = map[x][y]->positionY;
+									fallingItems[i].itemNumber = map[x][y]->item;
+									fallingItems[i].hp = 1;
+
+									map[x][y]->item = -1;
+									break;
+								}
+							}
+						}
+
+						return;
+					}
+				}
+			}
+		}
+	}
+
 }
 
 void checkItemCollision(struct Player* player, int height, struct Ball* balls)
@@ -172,24 +214,54 @@ void checkItemCollision(struct Player* player, int height, struct Ball* balls)
 						player->size += 2; // 사이즈 증가
 						break;
 					case 2: // 공 추가
-						for (int j = 0;j < MAX_BALLS;j++)
 						{
-							if (balls[j].active == 0)
+							int activeBall = 0;
+							int currentActiveBall[MAX_BALLS];
+
+							for (int j = 0;j < MAX_BALLS;j++)
 							{
-								balls[j].positionX = player->positionX + player->size;
-								balls[j].positionY = player->positionY - 1;
-								if (rand() % 10 < 5)
+								if (balls[j].active == 1)
 								{
-									balls[j].dX = -balls[0].dX;
+									currentActiveBall[activeBall] = j;
+									activeBall++;
 								}
-								balls[j].dX = 2.0f;
-								balls[j].dY = 1.0f;
-								balls[j].damage = 1;
-								balls[j].active = 1;
-								player->life++;
-								break;
+							}
+
+							for (int j = 0;j < activeBall;j++)
+							{
+								int originBall = currentActiveBall[j];
+
+								for (int k = 0; k < MAX_BALLS; k++)
+								{
+									if (balls[k].active == 0)
+									{
+										balls[k].positionX = balls[originBall].positionX;
+										balls[k].positionY = balls[originBall].positionY;
+
+										balls[k].dY = 1.0f;
+
+										if (rand() % 10 < 5)
+										{
+											balls[k].dX = -balls[originBall].dX;
+											if (rand() % 10 > 7)
+											{
+												balls[k].dY = -balls[originBall].dY;
+											}
+										}
+										else
+										{
+											balls[k].dX = balls[originBall].dX;
+										}
+										balls[k].damage = 1;
+										balls[k].active = 1;
+										player->life++;
+
+										break;
+									}
+								}
 							}
 						}
+						break;
 					}
 				}
 			}
