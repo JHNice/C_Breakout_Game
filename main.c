@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include "render.h"
 
 #define LEFT 75
@@ -41,7 +41,7 @@ int main()
 
 	int tick = 0; // 공 속도 조절
 
-	createMap(40, 30, width);
+	createMap(40, 20, width);
 
 	while (1)
 	{
@@ -61,12 +61,16 @@ int main()
 				{
 					balls[i].active = 0;
 				}
-
 				balls[0].positionX = x + playerSize;
 				balls[0].positionY = y - 2;
 				balls[0].dX = 2.0f;
 				balls[0].dY = -1.0f;
 				balls[0].active = 1;
+
+				hitScore = 0;
+				itemScore = 0;
+				player.life = 1;
+				createMap(40, 20, width);
 			}
 			key = _getch();
 			if (key == -32 || key == 0)
@@ -135,7 +139,7 @@ int main()
 			}
 			else
 			{
-				if (tick >= 2)
+				if (tick >= 4)
 				{
 					for (int i = 0; i < MAX_BALLS; i++)
 					{
@@ -147,7 +151,7 @@ int main()
 						balls[i].afterX = balls[i].positionX+balls[i].dX;
 						balls[i].afterY = balls[i].positionY-balls[i].dY;
 
-						checkBrickCollision(&balls[i], map, height);
+						checkBrickCollision(&balls[i], map, width, height);
 
 						launchGame(&balls[i]);
 						}

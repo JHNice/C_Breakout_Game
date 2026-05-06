@@ -74,7 +74,7 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 
 }
 
-void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y], int height)
+void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y], int width,int height)
 {
 	int hitX = 0;
 	int hitY = 0;
@@ -140,6 +140,8 @@ void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZ
 		}
 	}
 
+	
+
 	if (hitX == 0 && hitY == 0)
 	{
 		for (int y = 0; y < MAP_MAXSIZE_Y; y++)
@@ -181,6 +183,8 @@ void checkBrickCollision(struct Ball* ball, Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZ
 			}
 		}
 	}
+
+	stageClear();
 
 }
 

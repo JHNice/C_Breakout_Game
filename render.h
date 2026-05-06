@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <stdio.h>
 #include <stdlib.h>
 #include "buffer.h"
@@ -6,6 +6,7 @@
 #include "collision.h"
 
 int launch = 0;
+int aliveBrick = 0;
 
 void render(int x, int y, const char* character)
 {
@@ -42,6 +43,10 @@ void renderPause(int x, int y)
 	else if (pause == 3)
 	{
 		render(x - 11, y, "게임에서 패배하셨습니다.");
+	}
+	else if (pause == 100)
+	{
+		render(x, y, "stage clear");
 	}
 }
 
@@ -97,6 +102,25 @@ void createMap(int sizeX, int sizeY, int width)
 			}
 		}
 	}
+}
+
+void stageClear()
+{
+	for (int x = 0; x < MAP_MAXSIZE_X; x++)
+	{
+		for (int y = 0; y < MAP_MAXSIZE_Y;y++)
+		{
+			if (map[x][y]->hp >= 1)
+			{
+				aliveBrick++;
+			}
+		}
+	}
+	if (aliveBrick <= 0)
+	{
+		pause = 100;
+	}
+	aliveBrick = 0;
 }
 
 void renderBrick()
