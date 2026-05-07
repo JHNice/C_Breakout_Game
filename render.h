@@ -7,6 +7,7 @@
 
 int launch = 0;
 int aliveBrick = 0;
+time_t timeStart = 0.00f;
 
 void render(int x, int y, const char* character)
 {
@@ -46,7 +47,17 @@ void renderPause(int x, int y)
 	}
 	else if (pause == 100)
 	{
+		int clearScore = hitScore;
+		int clearTime = timeStart;
+		char clearScoreText[10];
+		char clearTimeText[20];
+		_itoa_s(hitScore, clearScoreText, sizeof(clearScoreText), 10);
+		_itoa_s(clearTime, clearTimeText, sizeof(clearTimeText), 20);
 		render(x, y, "stage clear");
+		render(x, y + 1, "최종 점수 : ");
+		render(x+14, y + 1, clearScoreText);
+		render(x, y + 2, "클리어 타임 : ");
+		render(x+16, y + 2, clearTimeText);
 	}
 }
 
@@ -99,6 +110,14 @@ void createMap(int sizeX, int sizeY, int width)
 			if (x < MAP_MAXSIZE_X && y < MAP_MAXSIZE_Y)
 			{
 				map[x][y] = createBrick(startX + x*2,startY + y);
+				if (map[x][y]->positionX == startX || map[x][y]->positionX == startX+(sizeX*2)-2)
+				{
+					map[x][y]->hp = 10;
+				}
+				else if (map[x][y]->positionY == startY + sizeY-1)
+				{
+					map[x][y]->hp = 10;
+				}
 			}
 		}
 	}
@@ -110,7 +129,7 @@ void stageClear()
 	{
 		for (int y = 0; y < MAP_MAXSIZE_Y;y++)
 		{
-			if (map[x][y]->hp >= 1)
+			if (map[x][y] != NULL && map[x][y]->hp >= 1)
 			{
 				aliveBrick++;
 			}
@@ -131,7 +150,19 @@ void renderBrick()
 		{
 			if (map[x][y] != NULL && map[x][y]->hp > 0)
 			{
-				render(map[x][y]->positionX, map[x][y]->positionY, "ㅁ");
+				if (map[x][y]->hp > 5)
+				{
+					render(map[x][y]->positionX, map[x][y]->positionY, "■");
+				}
+				else if (map[x][y]->hp > 1)
+				{
+					render(map[x][y]->positionX, map[x][y]->positionY, "□");
+				}
+				else
+				{
+					render(map[x][y]->positionX, map[x][y]->positionY, "ㅁ");
+				}
+				
 			}
 		}
 	}
@@ -164,15 +195,26 @@ void renderScore(int width, int height, struct Player* player)
 	char scoreText[20];
 	char itemScoreText[20];
 	char playerLifeText[10];
+	char stageTimeText[20];
+
+	int elapsedTime = 0;
+	if (launch == 1) {
+		elapsedTime = (int)(time(NULL) - timeStart);
+	}
+	_itoa_s(elapsedTime, stageTimeText, sizeof(stageTimeText), 10);
+
 	_itoa_s(hitScore, scoreText, sizeof(scoreText), 10);
 	_itoa_s(itemScore, itemScoreText, sizeof(itemScoreText), 10);
 	_itoa_s(player->life, playerLifeText, sizeof(playerLifeText), 10);
+	_itoa_s(timeStart, stageTimeText, sizeof(stageTimeText), 20);
 	render(4, height - 5, "점수 : ");
 	render(12, height - 5, scoreText);
 	render(4, height - 6, "itemScore : ");
 	render(14, height - 6, itemScoreText);
 	render(4, height - 4, "LIFE : ");
 	render(12, height - 4, playerLifeText);
+	render(4, height - 3, "TIME : ");
+	render(12, height - 3, stageTimeText);
 }
 
 void launchGame(struct Ball* ball)

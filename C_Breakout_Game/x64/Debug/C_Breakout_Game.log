@@ -1,41 +1,39 @@
 ﻿  main.c
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\buffer.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\buffer.h(12,8): warning C4244: '함수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\buffer.h(12,8): warning C4013: 'time'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(10,20): warning C4244: '초기화 중': 'float'에서 'time_t'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\collision.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(18,38): warning C4267: '함수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\collision.h(187,2): warning C4013: 'stageClear'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(31,9): warning C4244: '함수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(17,38): warning C4267: '함수': 'size_t'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(31,12): warning C4244: '함수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(30,9): warning C4244: '함수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(51,19): warning C4244: '초기화 중': 'time_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(30,12): warning C4244: '함수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(209,10): warning C4244: '함수': 'time_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'main.c'을(를) 컴파일하는 중)
   
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\render.h(107,6): error C2371: 'stageClear': 재정의. 기본 형식이 다릅니다.
-  (소스 파일 'main.c'을(를) 컴파일하는 중)
-  
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(35,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(36,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(64,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(65,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(134,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(135,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(137,29): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(137,54): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(162,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(163,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(165,42): warning C4047: '함수': 'Ball *'의 간접 참조 수준이 'Ball (*)[100]'과(와) 다릅니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(165,42): warning C4024: 'checkItemCollision': 형식 및 실제 매개 변수 3의 형식이 서로 다릅니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(174,30): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(174,55): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(30,29): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(30,43): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(41,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(42,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(70,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(71,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(197,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(198,28): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(200,29): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(200,54): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(226,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(227,25): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(229,42): warning C4047: '함수': 'Ball *'의 간접 참조 수준이 'Ball (*)[100]'과(와) 다릅니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(229,42): warning C4024: 'checkItemCollision': 형식 및 실제 매개 변수 3의 형식이 서로 다릅니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(238,30): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(238,55): warning C4244: '함수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(36,29): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\main.c(36,43): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  C_Breakout_Game.vcxproj -> C:\Users\Administrator\Desktop\ljh\C_Breakout_Game\x64\Debug\C_Breakout_Game.exe

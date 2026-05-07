@@ -1,5 +1,7 @@
-#pragma once
+﻿#pragma once
 #include "gameObject.h"
+
+void stageClear();
 
 int pause = 2;
 int hitScore = 0;
@@ -56,7 +58,10 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 				{
 					if (rand() % 10 < 5)
 					{
-						ball->positionY--;
+						if (ball->dY > 0.5)
+						{
+							ball->dY += -0.5;
+						}
 					}
 					ball->dX = -ball->dX;
 				}
@@ -64,7 +69,10 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 				{
 					if (rand() % 10 < 5)
 					{
-						ball->positionY--;
+						if (ball->dY > 0.5)
+						{
+							ball->dY += -0.5;
+						}
 					}
 					ball->dX = -ball->dX;
 				}

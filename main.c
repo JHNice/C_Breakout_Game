@@ -1,4 +1,5 @@
 ﻿#include <stdio.h>
+#include <time.h>
 #include "render.h"
 
 #define LEFT 75
@@ -6,9 +7,14 @@
 #define SPACE 32
 
 
+void setConsoleSizeSimple()
+{
+	system("mode con cols=100 lines=65");
+}
 
 int main()
 {
+	setConsoleSizeSimple();
 	
 	initialize();
 
@@ -87,12 +93,14 @@ int main()
 				if (launch == 0)
 				{
 					launch = !launch;
+					timeStart = time(NULL);
 				}
 				break;
 			case 90: // z
 				if (launch == 0)
 				{
 					launch = !launch;
+					timeStart = time(NULL);
 				}
 				break;
 
@@ -115,6 +123,61 @@ int main()
 				else
 				{
 					x = width-player.size*2;
+				}
+				break;
+				//TEMP
+			case 105: // 공분열로 스테이지 클리어 테스트용 *i버튼
+				if (pause == 0 && launch == 1) // 게임이 진행 중일 때만 작동하도록
+				{
+					int activeBall = 0;
+					int currentActiveBall[MAX_BALLS];
+
+					// 현재 활성화된 공들을 찾음
+					for (int j = 0; j < MAX_BALLS; j++)
+					{
+						if (balls[j].active == 1)
+						{
+							currentActiveBall[activeBall] = j;
+							activeBall++;
+						}
+					}
+
+					// 활성화된 각 공마다 새로운 공을 하나씩 추가 (분열)
+					for (int j = 0; j < activeBall; j++)
+					{
+						int originBall = currentActiveBall[j];
+
+						for (int k = 0; k < MAX_BALLS; k++)
+						{
+							// 비활성화된 빈 공간을 찾아 새 공 생성
+							if (balls[k].active == 0)
+							{
+								balls[k].positionX = balls[originBall].positionX;
+								balls[k].positionY = balls[originBall].positionY;
+								balls[k].dY = 1.0f;
+
+								// 랜덤한 방향으로 튀도록 설정
+								if (rand() % 10 < 5)
+								{
+									balls[k].dX = -balls[originBall].dX;
+									if (rand() % 10 > 7)
+									{
+										balls[k].dY = -balls[originBall].dY;
+									}
+								}
+								else
+								{
+									balls[k].dX = balls[originBall].dX;
+								}
+
+								balls[k].damage = 1;
+								balls[k].active = 1;
+								player.life++;
+
+								break;
+							}
+						}
+					}
 				}
 				break;
 			default: render(x, y, "exception\n");
@@ -141,6 +204,7 @@ int main()
 			{
 				if (tick >= 4)
 				{
+
 					for (int i = 0; i < MAX_BALLS; i++)
 					{
 						if (balls[i].active == 1)
