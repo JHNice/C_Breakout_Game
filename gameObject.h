@@ -7,8 +7,8 @@
 
 struct Player
 {
-	int positionX;
-	int positionY;
+	float positionX;
+	float positionY;
 	int speed;
 	int size;
 	int life;

@@ -47,8 +47,8 @@ int main()
 
 	int tick = 0; // 공 속도 조절
 
-	int mapX = 35;
-	int mapY = 25;
+	int mapX = 36;
+	int mapY = 26;
 
 	createMap(mapX, mapY, width);
 
