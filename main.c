@@ -47,7 +47,10 @@ int main()
 
 	int tick = 0; // 공 속도 조절
 
-	createMap(40, 20, width);
+	int mapX = 35;
+	int mapY = 25;
+
+	createMap(mapX, mapY, width);
 
 	while (1)
 	{
@@ -76,7 +79,9 @@ int main()
 				hitScore = 0;
 				itemScore = 0;
 				player.life = 1;
-				createMap(40, 20, width);
+				finalClearTime = 0;
+				destroyMap();
+				createMap(mapX, mapY, width);
 			}
 			key = _getch();
 			if (key == -32 || key == 0)
@@ -126,60 +131,60 @@ int main()
 				}
 				break;
 				//TEMP
-			case 105: // 공분열로 스테이지 클리어 테스트용 *i버튼
-				if (pause == 0 && launch == 1) // 게임이 진행 중일 때만 작동하도록
-				{
-					int activeBall = 0;
-					int currentActiveBall[MAX_BALLS];
-
-					// 현재 활성화된 공들을 찾음
-					for (int j = 0; j < MAX_BALLS; j++)
-					{
-						if (balls[j].active == 1)
-						{
-							currentActiveBall[activeBall] = j;
-							activeBall++;
-						}
-					}
-
-					// 활성화된 각 공마다 새로운 공을 하나씩 추가 (분열)
-					for (int j = 0; j < activeBall; j++)
-					{
-						int originBall = currentActiveBall[j];
-
-						for (int k = 0; k < MAX_BALLS; k++)
-						{
-							// 비활성화된 빈 공간을 찾아 새 공 생성
-							if (balls[k].active == 0)
-							{
-								balls[k].positionX = balls[originBall].positionX;
-								balls[k].positionY = balls[originBall].positionY;
-								balls[k].dY = 1.0f;
-
-								// 랜덤한 방향으로 튀도록 설정
-								if (rand() % 10 < 5)
-								{
-									balls[k].dX = -balls[originBall].dX;
-									if (rand() % 10 > 7)
-									{
-										balls[k].dY = -balls[originBall].dY;
-									}
-								}
-								else
-								{
-									balls[k].dX = balls[originBall].dX;
-								}
-
-								balls[k].damage = 1;
-								balls[k].active = 1;
-								player.life++;
-
-								break;
-							}
-						}
-					}
-				}
-				break;
+			//	case 105: // 공분열로 스테이지 클리어 테스트용 *i버튼
+			//		if (pause == 0 && launch == 1) // 게임이 진행 중일 때만 작동하도록
+			//		{
+			//			int activeBall = 0;
+			//			int currentActiveBall[MAX_BALLS];
+			//	
+			//			// 현재 활성화된 공들을 찾음
+			//			for (int j = 0; j < MAX_BALLS; j++)
+			//			{
+			//				if (balls[j].active == 1)
+			//				{
+			//					currentActiveBall[activeBall] = j;
+			//					activeBall++;
+			//				}
+			//			}
+			//	
+			//			// 활성화된 각 공마다 새로운 공을 하나씩 추가 (분열)
+			//			for (int j = 0; j < activeBall; j++)
+			//			{
+			//				int originBall = currentActiveBall[j];
+			//	
+			//				for (int k = 0; k < MAX_BALLS; k++)
+			//				{
+			//					// 비활성화된 빈 공간을 찾아 새 공 생성
+			//					if (balls[k].active == 0)
+			//					{
+			//						balls[k].positionX = balls[originBall].positionX;
+			//						balls[k].positionY = balls[originBall].positionY;
+			//						balls[k].dY = 1.0f;
+			//	
+			//						// 랜덤한 방향으로 튀도록 설정
+			//						if (rand() % 10 < 5)
+			//						{
+			//							balls[k].dX = -balls[originBall].dX;
+			//							if (rand() % 10 > 7)
+			//							{
+			//								balls[k].dY = -balls[originBall].dY;
+			//							}
+			//						}
+			//						else
+			//						{
+			//							balls[k].dX = balls[originBall].dX;
+			//						}
+			//	
+			//						balls[k].damage = 1;
+			//						balls[k].active = 1;
+			//						player.life++;
+			//	
+			//						break;
+			//					}
+			//				}
+			//			}
+			//		}
+			//		break;
 			default: render(x, y, "exception\n");
 				break;
 			}
@@ -202,7 +207,7 @@ int main()
 			}
 			else
 			{
-				if (tick >= 4)
+				if (tick >= 3)
 				{
 
 					for (int i = 0; i < MAX_BALLS; i++)
@@ -226,7 +231,7 @@ int main()
 					player.positionX = x;
 					player.positionY = y;
 
-					checkItemCollision(&player, height, &balls);
+					checkItemCollision(&player, height, balls);
 					
 					tick = 0;
 				}

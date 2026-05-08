@@ -7,7 +7,8 @@
 
 int launch = 0;
 int aliveBrick = 0;
-time_t timeStart = 0.00f;
+time_t timeStart = 0;
+int finalClearTime = 0;
 
 void render(int x, int y, const char* character)
 {
@@ -26,7 +27,7 @@ void renderPlayer(int x, int y, int size)
 	}
 }
 
-void renderBall(float x, float y)
+void renderBall(int x, int y)
 {
 	render(x, y, "ㅇ");
 }
@@ -48,11 +49,11 @@ void renderPause(int x, int y)
 	else if (pause == 100)
 	{
 		int clearScore = hitScore;
-		int clearTime = timeStart;
+		int clearTime = finalClearTime;
 		char clearScoreText[10];
 		char clearTimeText[20];
 		_itoa_s(hitScore, clearScoreText, sizeof(clearScoreText), 10);
-		_itoa_s(clearTime, clearTimeText, sizeof(clearTimeText), 20);
+		_itoa_s(clearTime, clearTimeText, sizeof(clearTimeText), 10);
 		render(x, y, "stage clear");
 		render(x, y + 1, "최종 점수 : ");
 		render(x+14, y + 1, clearScoreText);
@@ -78,6 +79,11 @@ Brick* createBrick(int x, int y)
 {
 	Brick* newBrick = (Brick*)malloc(sizeof(Brick));
 
+	if (newBrick == NULL)
+	{
+		return NULL;
+	}
+
 	newBrick->positionX = x;
 	newBrick->positionY = y;
 	newBrick->hp = 1;
@@ -97,11 +103,26 @@ Brick* createBrick(int x, int y)
 
 Brick* map[MAP_MAXSIZE_X][MAP_MAXSIZE_Y];
 
+void destroyMap()
+{
+	for (int x = 0; x < MAP_MAXSIZE_X; x++)
+	{
+		for (int y = 0; y < MAP_MAXSIZE_Y;y++)
+		{
+			if (map[x][y] != NULL)
+			{
+				free(map[x][y]);
+				map[x][y] = NULL;
+			}
+		}
+	}
+}
+
 void createMap(int sizeX, int sizeY, int width)
 {
 	int totalSizeX = sizeX * 2;
 	int startX = (width - totalSizeX) / 2;
-	int startY = 4;
+	int startY = 6;
 
 	for (int y = 0; y < sizeY; y++)
 	{
@@ -110,6 +131,12 @@ void createMap(int sizeX, int sizeY, int width)
 			if (x < MAP_MAXSIZE_X && y < MAP_MAXSIZE_Y)
 			{
 				map[x][y] = createBrick(startX + x*2,startY + y);
+				
+				if (rand() % 10 == 1)
+				{
+					map[x][y]->hp = 3;
+				}
+
 				if (map[x][y]->positionX == startX || map[x][y]->positionX == startX+(sizeX*2)-2)
 				{
 					map[x][y]->hp = 10;
@@ -135,9 +162,10 @@ void stageClear()
 			}
 		}
 	}
-	if (aliveBrick <= 0)
+	if (aliveBrick <= 0 && pause != 100)
 	{
 		pause = 100;
+		finalClearTime = (int)(time(NULL)) - timeStart;
 	}
 	aliveBrick = 0;
 }
@@ -206,7 +234,7 @@ void renderScore(int width, int height, struct Player* player)
 	_itoa_s(hitScore, scoreText, sizeof(scoreText), 10);
 	_itoa_s(itemScore, itemScoreText, sizeof(itemScoreText), 10);
 	_itoa_s(player->life, playerLifeText, sizeof(playerLifeText), 10);
-	_itoa_s(timeStart, stageTimeText, sizeof(stageTimeText), 20);
+	_itoa_s(elapsedTime, stageTimeText, sizeof(stageTimeText), 10);
 	render(4, height - 5, "점수 : ");
 	render(12, height - 5, scoreText);
 	render(4, height - 6, "itemScore : ");

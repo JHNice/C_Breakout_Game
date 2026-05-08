@@ -62,16 +62,24 @@ void checkPlayerCollision(struct Ball* ball, int playerX, int playerY, int playe
 						{
 							ball->dY += -0.5;
 						}
+						else
+						{
+							ball->dY = 1;
+						}
 					}
 					ball->dX = -ball->dX;
 				}
-				if (ball->dX < 0 && ball->positionX > playerX + playerSize +4)
+				if (ball->dX < 0 && ball->positionX >= playerX + playerSize +4)
 				{
 					if (rand() % 10 < 5)
 					{
 						if (ball->dY > 0.5)
 						{
 							ball->dY += -0.5;
+						}
+						else
+						{
+							ball->dY = 1;
 						}
 					}
 					ball->dX = -ball->dX;
@@ -220,10 +228,10 @@ void checkItemCollision(struct Player* player, int height, struct Ball* balls)
 					switch (fallingItems[i].itemNumber)
 					{
 					case 0:
-						itemScore += 10; // 테스트, 아이템 점수 증가
+						itemScore += 10; // 아이템 점수 증가
 						break;
 					case 1:
-						player->size += 2; // 사이즈 증가
+						player->size += 2; // 플레이어 사이즈 증가
 						break;
 					case 2: // 공 추가
 						{
