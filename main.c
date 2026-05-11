@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <time.h>
 #include "render.h"
 
@@ -10,6 +10,7 @@
 void setConsoleSizeSimple()
 {
 	system("mode con cols=100 lines=65");
+	SetConsoleOutputCP(65001);
 }
 
 int main()
@@ -207,7 +208,7 @@ int main()
 			}
 			else
 			{
-				if (tick >= 3)
+				if (tick >= 6)
 				{
 
 					for (int i = 0; i < MAX_BALLS; i++)

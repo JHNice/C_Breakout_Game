@@ -3,24 +3,27 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:main.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Microsoft\\VC\\v180\\Microsoft.CppBuild.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:render.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\buffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:buffer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\collision.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:collision.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\gameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:gameObject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\collision.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0800731E-E9E0-48AF-8FC9-6E9ACC3E71C1}|C_Breakout_Game.vcxproj|solutionrelative:collision.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,17 +33,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 196,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Microsoft.CppBuild.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Microsoft\\VC\\v180\\Microsoft.CppBuild.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Microsoft\\VC\\v180\\Microsoft.CppBuild.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Microsoft\\VC\\v180\\Microsoft.CppBuild.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Microsoft\\VC\\v180\\Microsoft.CppBuild.targets",
+              "ViewState": "AgIAAMUBAAAAAAAAAAAowNQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-05-11T09:08:57.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "main.c",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\main.c",
               "RelativeDocumentMoniker": "main.c",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\main.c",
               "RelativeToolTip": "main.c",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAAALMAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2026-05-07T08:56:55.826Z",
               "EditorCaption": ""
@@ -49,8 +65,33 @@
         },
         {
           "DockedWidth": 204,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "collision.h",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\collision.h",
+              "RelativeDocumentMoniker": "collision.h",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\collision.h",
+              "RelativeToolTip": "collision.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-07T08:56:56.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "render.h",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\render.h",
+              "RelativeDocumentMoniker": "render.h",
+              "ToolTip": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\render.h",
+              "RelativeToolTip": "render.h",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAGAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2026-05-07T08:56:56.064Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
@@ -61,47 +102,19 @@
               "RelativeToolTip": "gameObject.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-05-07T08:56:56.056Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T08:56:56.056Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "collision.h",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\collision.h",
-              "RelativeDocumentMoniker": "collision.h",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\collision.h",
-              "RelativeToolTip": "collision.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-05-07T08:56:56.06Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "render.h",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\render.h",
-              "RelativeDocumentMoniker": "render.h",
-              "ToolTip": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\render.h",
-              "RelativeToolTip": "render.h",
-              "ViewState": "AgIAALoAAAAAAAAAAAAAAM0AAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-05-07T08:56:56.064Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "buffer.h",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\buffer.h",
               "RelativeDocumentMoniker": "buffer.h",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\ljh\\C_Breakout_Game\\buffer.h",
               "RelativeToolTip": "buffer.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-05-07T08:56:56.077Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-07T08:56:56.077Z"
             }
           ]
         }
